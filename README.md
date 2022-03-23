@@ -528,6 +528,10 @@ for authorization - for example, to require that Chrome be used for
 second factor authentication to work, or require that some custom browser
 is used for authentication in an enterprise environment.
 
+> **NOTICE**
+Because Google forbids Huawei devices from using GMS, it is recommended
+to include **Huawei browser** when controlling browser to ensure normal use of users.
+
 Control over which browsers can be used can be achieved by defining a
 [BrowserMatcher](https://github.com/openid/AppAuth-Android/blob/master/library/java/net/openid/appauth/browser/BrowserMatcher.java), and supplying this to the builder of AppAuthConfiguration.
 A BrowserMatcher is suppled with a
@@ -543,12 +547,12 @@ provided, such as:
 
 - [Browsers](https://github.com/openid/AppAuth-Android/blob/master/library/java/net/openid/appauth/browser/Browsers.java):
   contains a set of constants for the official package names and signatures
-  of Chrome, Firefox and Samsung SBrowser.
+  of Chrome, Huawei Browser, Firefox and Samsung SBrowser.
 - [VersionedBrowserMatcher](https://github.com/openid/AppAuth-Android/blob/master/library/java/net/openid/appauth/browser/VersionedBrowserMatcher.java):
   will match a browser if it has a matching package name and signature, and
   a version number within a defined
   [VersionRange](https://github.com/openid/AppAuth-Android/blob/master/library/java/net/openid/appauth/browser/VersionRange.java). This class also provides some static instances for matching
-  Chrome, Firefox and Samsung SBrowser.
+  Chrome, Huawei Browser, Firefox and Samsung SBrowser.
 - [BrowserAllowList](https://github.com/openid/AppAuth-Android/blob/master/library/java/net/openid/appauth/browser/BrowserAllowList.java):
   takes a list of BrowserMatcher instances, and will match a browser if any
   of these child BrowserMatcher instances signals a match.
@@ -557,13 +561,16 @@ provided, such as:
   and will match a browser if it _does not_ match any of these child
   BrowserMatcher instances.
 
-For instance, in order to restrict the authorization flow to using Chrome
-or SBrowser as a custom tab:
+For instance, in order to restrict the authorization flow to using Chrome,
+Huawei Browser or SBrowser as a custom tab:
 
 ```java
 AppAuthConfiguration appAuthConfig = new AppAuthConfiguration.Builder()
     .setBrowserMatcher(new BrowserAllowList(
         VersionedBrowserMatcher.CHROME_CUSTOM_TAB,
+        // It is recommended to include HUAWEI_CUSTOM_TAB,
+        // because Huawei Browser can only be used on Huawei devices without GMS.
+        VersionedBrowserMatcher.HUAWEI_CUSTOM_TAB,
         VersionedBrowserMatcher.SAMSUNG_CUSTOM_TAB))
     .build();
 AuthorizationService authService =
