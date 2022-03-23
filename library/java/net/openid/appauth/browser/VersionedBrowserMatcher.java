@@ -44,6 +44,24 @@ public class VersionedBrowserMatcher implements BrowserMatcher {
             VersionRange.ANY_VERSION);
 
     /**
+     * Matches any version of Huawei Browser for use as a custom tab.
+     */
+    public static final VersionedBrowserMatcher HUAWEI_CUSTOM_TAB = new VersionedBrowserMatcher(
+        Browsers.HuaweiBrowser.PACKAGE_NAME,
+        Browsers.HuaweiBrowser.SIGNATURE_SET,
+        true,
+        VersionRange.atLeast(Browsers.HuaweiBrowser.MINIMUM_VERSION_FOR_CUSTOM_TAB));
+
+    /**
+     * Matches any version of Huawei Browser for use as a standalone browser.
+     */
+    public static final VersionedBrowserMatcher HUAWEI_BROWSER = new VersionedBrowserMatcher(
+        Browsers.HuaweiBrowser.PACKAGE_NAME,
+        Browsers.HuaweiBrowser.SIGNATURE_SET,
+        false,
+        VersionRange.ANY_VERSION);
+    
+    /**
      * Matches any version of Firefox for use as a custom tab.
      */
     public static final VersionedBrowserMatcher FIREFOX_CUSTOM_TAB = new VersionedBrowserMatcher(
