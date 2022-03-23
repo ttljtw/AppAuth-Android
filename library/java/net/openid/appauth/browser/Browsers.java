@@ -73,6 +73,58 @@ public final class Browsers {
             // no need to construct this class
         }
     }
+    
+    /**
+     * Constants related to
+     * [Huawei Browser](https://appgallery.huawei.com/app/C100170981),
+     * the default browser on Huawei devices(NO GMS).
+     */
+    public static final class HuaweiBrowser {
+
+        /**
+         * The package name for Huawei Browser.
+         */
+        public static final String PACKAGE_NAME = "com.huawei.browser";
+
+        /**
+         * The SHA-512 hash (Base64 url-safe encoded) of the public key for Huawei Browser.
+         */
+        public static final String SIGNATURE_HASH =
+            "OOzdSEud0D3ocrJZnneyTsxFgkMlYaQEp4A6gX-j4DBVe7Lecf_KLydHcjA6Q0apfZUc" +
+                "FGIK1UqAwcl8cd6I8w==";
+
+        /**
+         * The set of signature hashes for Huawei Browser.
+         */
+        public static final Set<String> SIGNATURE_SET =
+            Collections.singleton(SIGNATURE_HASH);
+
+        /**
+         * The version in which Custom Tabs were introduced in Huawei Browser.
+         */
+        public static final DelimitedVersion MINIMUM_VERSION_FOR_CUSTOM_TAB =
+            DelimitedVersion.parse("11");
+
+        /**
+         * Creates a browser descriptor for the specified version of Huawei Browser, when
+         * used as a standalone browser.
+         */
+        public static BrowserDescriptor standaloneBrowser(@NonNull String version) {
+            return new BrowserDescriptor(PACKAGE_NAME, SIGNATURE_SET, version, false);
+        }
+
+        /**
+         * Creates a browser descriptor for the specified version of Huawei Browser, when
+         * used as a custom tab.
+         */
+        public static BrowserDescriptor customTab(@NonNull String version) {
+            return new BrowserDescriptor(PACKAGE_NAME, SIGNATURE_SET, version, true);
+        }
+
+        private HuaweiBrowser() {
+            // no need to construct this class
+        }
+    }
 
     /**
      * Constants related to Mozilla Firefox.
