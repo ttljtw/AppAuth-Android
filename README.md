@@ -528,7 +528,7 @@ for authorization - for example, to require that Chrome be used for
 second factor authentication to work, or require that some custom browser
 is used for authentication in an enterprise environment.
 
-> **NOTICE**
+> **NOTICE**  
 Because Google forbids Huawei devices from using GMS, it is recommended
 to include **Huawei browser** when controlling browser to ensure normal use of users.
 
